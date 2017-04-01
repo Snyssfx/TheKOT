@@ -33,11 +33,11 @@ namespace Assets
 				{
 					Speed = 1.0f;
 					Angle = (float)(rnd.NextDouble() * 2 * Math.PI);
-					Cooldown = 100;
+					Cooldown = rnd.Next(100, 300);
 				}
 				else
 				{
-					Cooldown = 70;
+					Cooldown = rnd.Next(50, 200);
 				}
 			}
 
