@@ -11,7 +11,9 @@ namespace Assets
 		private float Angle;
 		private float Speed;
 
-		private const float pi2 = 1.570796F;
+    public Rigidbody2D rb;
+
+    private const float pi2 = 1.570796F;
 
 		public abstract void Control(GameObject gameObject);
 

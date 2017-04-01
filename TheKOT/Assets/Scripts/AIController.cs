@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 namespace Assets
 {
@@ -12,11 +12,12 @@ namespace Assets
 		private float Angle;
 		private float Speed;
 		private int Cooldown = 0;
+       
 
 		private const float pi2 = 1.570796F;
 
 		private const double chanceToMove = 0.5;
-		Random rnd = new Random();
+		//Random rnd = new Random();
 
 		public override void Control(GameObject gameObject)
 		{
@@ -27,17 +28,17 @@ namespace Assets
 			}
 			else
 			{
-				double chance = rnd.NextDouble();
+        double chance = Random.Range(0.0f, 1.0f);
 
 				if (chance < chanceToMove)
 				{
 					Speed = 1.0f;
-					Angle = (float)(rnd.NextDouble() * 2 * Math.PI);
-					Cooldown = rnd.Next(100, 300);
+					Angle = (float)(Random.Range(0.0f, 1.0f) * 2 * Math.PI);
+					Cooldown = Random.Range(50, 150);
 				}
 				else
 				{
-					Cooldown = rnd.Next(50, 200);
+					Cooldown = Random.Range(50, 150);
 				}
 			}
 
@@ -45,9 +46,17 @@ namespace Assets
 			Move(gameObject);
 		}
 
+    void OnCollisionEnter2D(Collision2D coll) {
+      Debug.Log("Im here");
+      if ( coll.gameObject.tag == "Wall" || coll.gameObject.tag == "Door" ) {
+        Angle = Random.Range(Angle - pi2 / 2.0f, Angle + pi2 / 2.0f);
+      }
+    }
+
 		internal override void Move(GameObject gameObject)
 		{
-			gameObject.transform.position += new Vector3((float)(Math.Cos(Angle) * Speed) * Time.deltaTime, (float)(Math.Sin(Angle) * Speed) * Time.deltaTime, 0.0f);
+      rb.velocity = 100 * new Vector3((float) (Math.Cos(Angle) * Speed) * Time.deltaTime, (float) (Math.Sin(Angle) * Speed) * Time.deltaTime, 0.0f);
+     // gameObject.transform.position += new Vector3((float)(Math.Cos(Angle) * Speed) * Time.deltaTime, (float)(Math.Sin(Angle) * Speed) * Time.deltaTime, 0.0f);
 		}
 
 		private void Rotate(GameObject gameObject)

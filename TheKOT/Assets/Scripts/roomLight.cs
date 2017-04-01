@@ -22,12 +22,13 @@ public class roomLight : MonoBehaviour {
     if ( PlayerIsHere == OldPlayerIsHere )
       return;
     OldPlayerIsHere = PlayerIsHere;
-    if (PlayerIsHere)
+    if ( !PlayerIsHere ) {
+      Debug.Log("PlayerIsHere");
       foreach ( var sr in gameObject.GetComponentsInChildren<SpriteRenderer>() ) {
-        if (sr.gameObject.tag == "Floor")
+        if ( sr.gameObject.tag == "Floor" )
           sr.color = new Color(0.35f, 0.35f, 0.35f, 1.0f);
       }
-    else
+    } else
       foreach ( var sr in gameObject.GetComponentsInChildren<SpriteRenderer>() ) {
         if ( sr.gameObject.tag == "Floor" )
           sr.color = Color.white;
