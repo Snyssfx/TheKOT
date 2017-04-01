@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets
 {
-	internal class AiController : IController
+	internal class AiController : Controller
 	{
 		public override void Move()
 		{

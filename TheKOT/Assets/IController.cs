@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets
 {
-	internal abstract class IController
+	internal abstract class Controller
 	{
 		private int XVector;
 		private int YVector;
