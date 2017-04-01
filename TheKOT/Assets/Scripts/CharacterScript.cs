@@ -19,9 +19,8 @@ public class CharacterScript : MonoBehaviour
   }
 
   void OnTriggerStay2D(Collider2D coll) {
-    
+   
     if ( !isAI && coll.gameObject.tag == "Door" && (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.F))) {
-      Debug.Log("Stay");
       Vector3 pos = gameObject.transform.position;
       var colls = coll.gameObject.GetComponents<BoxCollider2D>();
 
@@ -49,8 +48,10 @@ public class CharacterScript : MonoBehaviour
   void Start ()
 	{
 		controller = isAI ? 
-			isEnemy ? (Controller) new AiEnemyController() : new AiFriendlyController() 
+			isEnemy ? (Controller) new AiEnemyController() : new AiFriendlyController()
 			: new PlayerController();
+		var x = gameObject.GetComponent<Rigidbody2D>();
+		controller.rb = x;
 	}
 	
 	// Update is called once per frame

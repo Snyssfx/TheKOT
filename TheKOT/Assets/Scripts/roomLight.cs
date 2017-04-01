@@ -19,6 +19,7 @@ public class roomLight : MonoBehaviour {
 		checkPlayer();
 	}
 
+
 	private void FindEnemies()
 	{
 		foreach (var sr in gameObject.GetComponentsInChildren<SpriteRenderer>())
