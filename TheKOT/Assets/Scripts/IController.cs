@@ -18,5 +18,7 @@ namespace Assets
 		public abstract void Control(GameObject gameObject);
 
 		internal abstract void Move(GameObject gameObject);
+
+		internal abstract void Rotate(GameObject gameObject);
 	}
 }
