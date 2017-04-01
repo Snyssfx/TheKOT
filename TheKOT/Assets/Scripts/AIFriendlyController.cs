@@ -7,7 +7,7 @@ using Random = System.Random;
 
 namespace Assets
 {
-	internal class AiController : Controller
+	internal class AiFriendlyController : Controller
 	{
 		private float Angle;
 		private float Speed;
@@ -50,7 +50,7 @@ namespace Assets
 			gameObject.transform.position += new Vector3((float)(Math.Cos(Angle) * Speed) * Time.deltaTime, (float)(Math.Sin(Angle) * Speed) * Time.deltaTime, 0.0f);
 		}
 
-		private void Rotate(GameObject gameObject)
+		internal override void Rotate(GameObject gameObject)
 		{
 			gameObject.transform.rotation = Quaternion.AngleAxis((float)(((Angle - pi2) / Math.PI * 180)), Vector3.forward);
 		}

@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
 {
 	private Controller controller;
 	public bool isAI;
+	public bool isEnemy;
   //public Rigidbody2D rigidbody;
 
   void OnTriggerEnter2D(Collider2D coll)
@@ -46,7 +48,9 @@ public class CharacterScript : MonoBehaviour
   // Use this for initialization
   void Start ()
 	{
-		controller = isAI ? (Controller) new AiController() : new PlayerController();
+		controller = isAI ? 
+			isEnemy ? (Controller) new AiEnemyController() : new AiFriendlyController() 
+			: new PlayerController();
 	}
 	
 	// Update is called once per frame

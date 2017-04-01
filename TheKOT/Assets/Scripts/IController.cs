@@ -8,13 +8,10 @@ namespace Assets
 {
 	internal abstract class Controller
 	{
-		private float Angle;
-		private float Speed;
-
-		private const float pi2 = 1.570796F;
-
 		public abstract void Control(GameObject gameObject);
 
 		internal abstract void Move(GameObject gameObject);
+
+		internal abstract void Rotate(GameObject gameObject);
 	}
 }

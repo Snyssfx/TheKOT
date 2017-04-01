@@ -9,28 +9,43 @@ public class roomLight : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+		FindEnemies();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-    checkPlayer();
+		checkPlayer();
 	}
 
-  public void checkPlayer() {
-    if ( PlayerIsHere == OldPlayerIsHere )
-      return;
-    OldPlayerIsHere = PlayerIsHere;
-    if (PlayerIsHere)
-      foreach ( var sr in gameObject.GetComponentsInChildren<SpriteRenderer>() ) {
-        if (sr.gameObject.tag == "Floor")
-          sr.color = new Color(0.35f, 0.35f, 0.35f, 1.0f);
-      }
-    else
-      foreach ( var sr in gameObject.GetComponentsInChildren<SpriteRenderer>() ) {
-        if ( sr.gameObject.tag == "Floor" )
-          sr.color = Color.white;
-      }
-  }
+	private void FindEnemies()
+	{
+		foreach (var sr in gameObject.GetComponentsInChildren<SpriteRenderer>())
+		{
+			if (sr.gameObject.tag == "Enemy")
+			{
+				//sr.gameObject.
+			}
+		}
+	}
+
+	private void checkPlayer()
+	{
+		if (PlayerIsHere == OldPlayerIsHere)
+			return;
+		OldPlayerIsHere = PlayerIsHere;
+		if (PlayerIsHere)
+			foreach (var sr in gameObject.GetComponentsInChildren<SpriteRenderer>())
+			{
+				if (sr.gameObject.tag == "Floor")
+				sr.color = new Color(0.35f, 0.35f, 0.35f, 1.0f);
+			}
+		else
+		foreach (var sr in gameObject.GetComponentsInChildren<SpriteRenderer>())
+		{
+			if ( sr.gameObject.tag == "Floor" )
+			sr.color = Color.white;
+		}
+	}
 }
