@@ -12,7 +12,7 @@ namespace Assets
 		private float Angle;
 		private float Speed;
 
-		private const double chanceToMove = 0.4;
+		private const double chanceToMove = 0.6;
 		Random rnd = new Random();
 
 		public override void Control(GameObject gameObject)
