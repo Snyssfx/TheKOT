@@ -16,6 +16,23 @@ public class CharacterScript : MonoBehaviour
     }
   }
 
+  void OnTriggerStay2D(Collider2D coll) {
+    
+    if ( !isAI && coll.gameObject.tag == "Door" && (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.F))) {
+      Debug.Log("Stay");
+      Vector3 pos = gameObject.transform.position;
+      var colls = coll.gameObject.GetComponents<BoxCollider2D>();
+
+      if ( colls[0] == coll )
+        pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0, -1.2f));
+      else
+        pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0, 1.2f));
+
+      gameObject.transform.position += pos;
+    }
+  }
+
+
   void OnTriggerExit2D(Collider2D coll)
   {
     
