@@ -21,15 +21,16 @@ public class roomLight : MonoBehaviour {
   public void checkPlayer() {
     if ( PlayerIsHere == OldPlayerIsHere )
       return;
-    Debug.Log("Im here");
     OldPlayerIsHere = PlayerIsHere;
     if (PlayerIsHere)
       foreach ( var sr in gameObject.GetComponentsInChildren<SpriteRenderer>() ) {
-        sr.color = new Color(0.2f, 0.2f, 0.2f, 1.0f);
+        if (sr.gameObject.tag == "Floor")
+          sr.color = new Color(0.35f, 0.35f, 0.35f, 1.0f);
       }
     else
       foreach ( var sr in gameObject.GetComponentsInChildren<SpriteRenderer>() ) {
-        sr.color = Color.white;
+        if ( sr.gameObject.tag == "Floor" )
+          sr.color = Color.white;
       }
   }
 }
