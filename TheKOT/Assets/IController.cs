@@ -11,8 +11,8 @@ namespace Assets
 		private float Angle;
 		private float Speed;
 
-		public abstract void Control(GameObject transform);
+		public abstract void Control(GameObject gameObject);
 
-		internal abstract void Move(GameObject transform);
+		internal abstract void Move(GameObject gameObject);
 	}
 }
