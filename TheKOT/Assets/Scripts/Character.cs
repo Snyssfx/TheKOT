@@ -40,22 +40,18 @@ public class Character : MonoBehaviour
 	}
 
 
-	void OnTriggerEnter2D(Collider2D coll)
-	{
-		if ( type == Type.Player && coll.gameObject.gameObject.tag == "Room" )
-		{
-			coll.gameObject.GetComponent<RoomLight>().PlayerIsHere = true;
-		}
-		else if (coll.gameObject.tag == "Enemy" && type == Type.Player)
-		{
-			if (Vector3.Distance(gameObject.transform.position, coll.gameObject.transform.position) < 3.0f)
-			{
-				GameOver(false);
-			}
-		}
-	}
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Enemy" && type == Type.Player)
+        {
+            if (Vector3.Distance(gameObject.transform.position, coll.gameObject.transform.position) < 1.0f)
+            {
+                GameOver(false);
+            }
+        }
+    }
 
-  void OnTriggerStay2D(Collider2D coll)
+    void OnTriggerStay2D(Collider2D coll)
   {
     //DOOR
     bool keyPressed = Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.F);
@@ -70,20 +66,22 @@ public class Character : MonoBehaviour
 
       gameObject.transform.position += pos;
     }
-    
-    //ENEMY GIRL
-    if ( coll.gameObject.tag == "Enemy" && type == Type.Player ) {
-      var script = coll.gameObject.GetComponent<Character>().controller as EnemyController;
-      if ( script != null ) {
-        script.Player = gameObject;
-        script.isFollowPlayer = true;
-      }
+
+        //ENEMY GIRL
+        if (coll.gameObject.tag == "Enemy" && type == Type.Player)
+        {
+            var script = coll.gameObject.GetComponent<Character>().controller as EnemyController;
+            if (script != null)
+            {
+                script.Player = gameObject;
+                script.isFollowPlayer = true;
+            }
+        }
+
     }
 
-  }
-
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    void Update ()
 	{
 		controller.Control(gameObject);
 	}
@@ -92,12 +90,23 @@ public class Character : MonoBehaviour
 	{
 		if ( !isWon )
 		{
-			Time.timeScale = 0;
-			Debug.Log("You are the loser!");
-		}
+            StartCoroutine(fail());
+        }
 		else
 		{
-			Debug.Log("You are the winner!");
-		}
+            Time.timeScale = 0;
+            GameObject.FindGameObjectWithTag("MainCamera").transform.position = new Vector3(2000, 2000, 0);
+            GameObject.FindGameObjectWithTag("GoodEnd").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
 	}
+
+    IEnumerator fail() { 
+        GameObject.FindGameObjectWithTag("MainCamera").transform.position = new Vector3(2000, 2000, 0);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>().Stop();
+        GameObject.FindGameObjectWithTag("BadEnd").GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        GameObject.FindGameObjectWithTag("BadEnd").GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(2.0f);
+        Time.timeScale = 0;
+    }
+
 }

@@ -8,7 +8,7 @@ public class PlayerController : Controller
 	public override void Control(GameObject gameObject) {
     gameObject2 = gameObject;
 
-    Speed = 2.0f;
+    Speed = 3.0f;
     yDirection = xDirection = 0;
     if ( Input.GetKey(KeyCode.W) )
       yDirection++;
