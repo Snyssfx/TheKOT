@@ -10,19 +10,6 @@ public class EnemyController : Controller
 	public bool isFollowPlayer = false;
 	public GameObject Player;
 
-	public override void Control(GameObject gameObject)
-	{
-		gameObject2 = gameObject;
-		if ( delay < 0 )
-		{
-			if ( Random.Range(0.0f, 1.0f) < threshold )
-			{
-				Speed = 1.0f;
-				xDirection = Random.Range(-1, 2);
-				yDirection = Random.Range(-1, 2);
-				direction = new Vector3(xDirection, yDirection);
-				direction.Normalize();
-
 
   public override void Control(GameObject gameObject)
   {
@@ -63,8 +50,8 @@ public class EnemyController : Controller
 			var ourTrans = gameObject2.transform;
 			var plTrans = Player.transform;
 			gameObject2.transform.position += (plTrans.position - ourTrans.position).normalized * Speed * Time.deltaTime;
-			if ( (ourTrans.position - plTrans.position).magnitude < 0.001f )
-			gameObject2.GetComponent<Character>().GameOver(false);
+			//if ( (ourTrans.position - plTrans.position).magnitude < 0.001f )
+			//gameObject2.GetComponent<Character>().GameOver(false);
 		}
     
 		if ( direction.sqrMagnitude >= 0.001f )
