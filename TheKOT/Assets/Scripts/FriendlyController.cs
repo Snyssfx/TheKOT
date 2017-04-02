@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class FriendlyController : Controller
 {
-  private float delay;
-  public float threshold = 0.4f;
-  private GameObject gameObject2;
+	private float delay;
+	public float threshold = 0.4f;
+	private GameObject gameObject2;
 
-  public override void Control(GameObject gameObject)
-  {
+	public override void Control(GameObject gameObject)
+	{
 		gameObject2 = gameObject;
 		if ( delay < 0 )
 		{
@@ -25,7 +25,7 @@ public class FriendlyController : Controller
 			}
 			else
 			{
-		        Speed = 0;
+				Speed = 0;
 				delay = Random.Range(1.0f, 3.0f);
 				direction = new Vector3(0, 0);
 				//gameObject2.GetComponent<Animator>().SetBool("isWalk", false);
@@ -36,10 +36,10 @@ public class FriendlyController : Controller
 			delay -= Time.deltaTime;
 			Move();
 		}
-  }
+	}
 
-  internal override void Move()
-  {
+	internal override void Move()
+	{
 		if ( direction.sqrMagnitude >= 0.01f )
 		{
 			gameObject2.transform.rotation = Quaternion.Euler(0, 0, 
@@ -53,5 +53,5 @@ public class FriendlyController : Controller
 			gameObject2.GetComponent<Animator>().SetBool("isWalk", false);
 			//Debug.Log("I stay");
 		}
-  }
+	}
 }
