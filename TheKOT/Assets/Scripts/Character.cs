@@ -69,6 +69,17 @@ public class Character : MonoBehaviour
 		}
 	}
 
+	void OnTriggerEnter2D(Collider2D coll)
+	{
+		if (coll.gameObject.tag == "Enemy" && type == Type.Player)
+		{
+			if (Vector3.Distance(gameObject.transform.position, coll.gameObject.transform.position) < 3.0f)
+			{
+				GameOver(false);
+			}
+		}
+	}
+
 	// Update is called once per frame
 	void Update ()
 	{
@@ -79,6 +90,7 @@ public class Character : MonoBehaviour
 	{
 		if ( !isWon )
 		{
+			Time.timeScale = 0;
 			Debug.Log("You are the loser!");
 		}
 		else
