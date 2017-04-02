@@ -19,6 +19,7 @@ public class FriendlyController : Controller
 				yDirection = Random.Range(-1, 2);
 				direction = new Vector3(xDirection, yDirection);
 				direction.Normalize();
+				gameObject2.GetComponent<AudioSource>().Play();
 
 				delay = Random.Range(1.0f, 3.0f);
 				Move();
@@ -28,6 +29,7 @@ public class FriendlyController : Controller
 		        Speed = 0;
 				delay = Random.Range(1.0f, 3.0f);
 				direction = new Vector3(0, 0);
+				gameObject2.GetComponent<AudioSource>().Stop();
 				//gameObject2.GetComponent<Animator>().SetBool("isWalk", false);
 			}
 		}
@@ -48,7 +50,6 @@ public class FriendlyController : Controller
 				Mathf.Sign(yDirection) * Vector3.Angle(Vector3.right, direction) - 90);
 			gameObject2.transform.position += direction * Speed * Time.deltaTime;
 			gameObject2.GetComponent<Animator>().SetBool("isWalk", true);
-			//gameObject.GetComponent<Character>().audioSource.P
 		}
 		else
 		{

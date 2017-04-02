@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomLight : MonoBehaviour {
+public class RoomLight : MonoBehaviour
+{
 
-  public bool PlayerIsHere, OldPlayerIsHere;
+	public bool PlayerIsHere, OldPlayerIsHere;
 
 
 	// Use this for initialization
-	void Start () {
-    PlayerIsHere = false;
-    OldPlayerIsHere = true;
+	void Start ()
+	{
+		PlayerIsHere = false;
+		OldPlayerIsHere = true;
 	}
 
   // Update is called once per frame

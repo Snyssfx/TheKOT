@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Controller {
-
+public abstract class Controller
+{
   public float Speed;
   public GameObject gameObject2;
 
@@ -12,5 +12,4 @@ public abstract class Controller {
 
   public abstract void Control(GameObject gameObject);
   internal abstract void Move();
-
 }
