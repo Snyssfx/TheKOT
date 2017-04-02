@@ -53,13 +53,13 @@ public class Character : MonoBehaviour {
       var colls = coll.gameObject.GetComponents<BoxCollider2D>();
 
       if ( colls[0] == coll )
-        pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0, -1.2f));
+        pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0.0f, -2.0f));
       else
-        pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0, 1.2f));
+        pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0.0f, 2.0f));
 
       gameObject.transform.position += pos;
     }
-
+    
     //ENEMY GIRL
     if ( coll.gameObject.tag == "Enemy" && type == Type.Player ) {
       var script = coll.gameObject.GetComponent<Character>().controller as EnemyController;
