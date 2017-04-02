@@ -39,35 +39,40 @@ public class Character : MonoBehaviour
 		audioSource = gameObject.GetComponent<AudioSource>();
 	}
 
-	void OnTriggerStay2D(Collider2D coll)
-	{
-		if ( coll.gameObject.tag == "Enemy" && type == Type.Player)
-		{
-			Debug.Log("OnTriggerStay");
-			var script = coll.gameObject.GetComponent<Character>().controller as EnemyController;
-			if ( script != null )
-			{
-			script.Player = gameObject;
-			script.isFollowPlayer = true;
-			}
-		}
-		else if (type == Type.Player && coll.gameObject.tag == "Door" && Input.GetKeyDown(KeyCode.E))
-		{
-			Vector3 pos = gameObject.transform.position;
-			var colls = coll.gameObject.GetComponents<BoxCollider2D>();
 
-			if (colls[0] == coll)
-			{
-				pos = coll.gameObject.transform.localToWorldMatrix*(new Vector3(0, -1.2f));
-			}
-			else
-			{
-				pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0, 1.2f));
-			}
+  void OnTriggerEnter2D(Collider2D coll)
+  {
+    if ( type == Type.Player && coll.gameObject.gameObject.tag == "Room" ) {
+      coll.gameObject.GetComponent<RoomLight>().PlayerIsHere = true;
+    }
+  }
 
-			gameObject.transform.position += pos;
-		}
-	}
+  void OnTriggerStay2D(Collider2D coll)
+  {
+    //DOOR
+    bool keyPressed = Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.F);
+    if ( type == Type.Player && coll.gameObject.tag == "Door" &&  keyPressed) {
+      Vector3 pos = gameObject.transform.position;
+      var colls = coll.gameObject.GetComponents<BoxCollider2D>();
+
+      if ( colls[0] == coll )
+        pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0.0f, -2.0f));
+      else
+        pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0.0f, 2.0f));
+
+      gameObject.transform.position += pos;
+    }
+    
+    //ENEMY GIRL
+    if ( coll.gameObject.tag == "Enemy" && type == Type.Player ) {
+      var script = coll.gameObject.GetComponent<Character>().controller as EnemyController;
+      if ( script != null ) {
+        script.Player = gameObject;
+        script.isFollowPlayer = true;
+      }
+    }
+
+  }
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
