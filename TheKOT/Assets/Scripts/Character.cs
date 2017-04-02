@@ -40,12 +40,20 @@ public class Character : MonoBehaviour
 	}
 
 
-  void OnTriggerEnter2D(Collider2D coll)
-  {
-    if ( type == Type.Player && coll.gameObject.gameObject.tag == "Room" ) {
-      coll.gameObject.GetComponent<RoomLight>().PlayerIsHere = true;
-    }
-  }
+	void OnTriggerEnter2D(Collider2D coll)
+	{
+		if ( type == Type.Player && coll.gameObject.gameObject.tag == "Room" )
+		{
+			coll.gameObject.GetComponent<RoomLight>().PlayerIsHere = true;
+		}
+		else if (coll.gameObject.tag == "Enemy" && type == Type.Player)
+		{
+			if (Vector3.Distance(gameObject.transform.position, coll.gameObject.transform.position) < 3.0f)
+			{
+				GameOver(false);
+			}
+		}
+	}
 
   void OnTriggerStay2D(Collider2D coll)
   {
@@ -73,17 +81,6 @@ public class Character : MonoBehaviour
     }
 
   }
-
-	void OnTriggerEnter2D(Collider2D coll)
-	{
-		if (coll.gameObject.tag == "Enemy" && type == Type.Player)
-		{
-			if (Vector3.Distance(gameObject.transform.position, coll.gameObject.transform.position) < 3.0f)
-			{
-				GameOver(false);
-			}
-		}
-	}
 
 	// Update is called once per frame
 	void Update ()
