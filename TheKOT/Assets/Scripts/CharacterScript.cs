@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Assets;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
