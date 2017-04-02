@@ -42,6 +42,8 @@ public class FriendlyController : Controller
   {
 		if ( direction.sqrMagnitude >= 0.01f )
 		{
+            if (gameObject2.GetComponent<Animator>().GetBool("isLaugth"))
+                return;
 			gameObject2.transform.rotation = Quaternion.Euler(0, 0, 
 				Mathf.Sign(yDirection) * Vector3.Angle(Vector3.right, direction) - 90);
 			gameObject2.transform.position += direction * Speed * Time.deltaTime;

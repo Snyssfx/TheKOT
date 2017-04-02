@@ -36,8 +36,15 @@ public class RoomLight : MonoBehaviour {
           enemy.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
         }
       }
+      foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+              if (isInRoom(enemy))
+                {
+                    enemy.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                }
+            }
 
-    } else {
+        } else {
       foreach ( var sr in gameObject.GetComponentsInChildren<SpriteRenderer>() ) {
         if ( sr.gameObject.tag == "Floor" )
           sr.color = Color.white;
@@ -47,7 +54,14 @@ public class RoomLight : MonoBehaviour {
           enemy.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         }
       }
-    }
+            foreach (var enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                if (isInRoom(enemy))
+                {
+                    enemy.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                }
+            }
+        }
   }
 
   bool isInRoom(GameObject enemy)

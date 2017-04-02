@@ -26,9 +26,11 @@ public class Inventar : MonoBehaviour {
   void OnCollisionEnter2D(Collision2D coll) {
     if ( coll.gameObject.tag == "Friendly" ) {
       if ( numOfFeathers > 0 ) {
-        Debug.Log("I'm killed by you!");
-        GameObject.Destroy(coll.gameObject);
-        numOfFeathers--;
+            Debug.Log("I'm killed by you!");
+                //GameObject.Destroy(coll.gameObject);
+                coll.gameObject.GetComponent<Animator>().SetBool("isLaugth", true);
+                //
+                numOfFeathers--;
       }
     }
   }

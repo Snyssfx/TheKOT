@@ -16,7 +16,7 @@ public class EnemyController : Controller
     gameObject2 = gameObject;
     if ( delay < 0 ) {
       if ( Random.Range(0.0f, 1.0f) < threshold ) {
-        Speed = 1.0f;
+        Speed = 2.5f;
         xDirection = Random.Range(-1, 2);
         yDirection = Random.Range(-1, 2);
         direction = new Vector3(xDirection, yDirection);
