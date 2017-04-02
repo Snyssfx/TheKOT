@@ -51,9 +51,23 @@ public class Character : MonoBehaviour
 			script.isFollowPlayer = true;
 			}
 		}
+		else if (type == Type.Player && coll.gameObject.tag == "Door" && Input.GetKeyDown(KeyCode.E))
+		{
+			Vector3 pos = gameObject.transform.position;
+			var colls = coll.gameObject.GetComponents<BoxCollider2D>();
+
+			if (colls[0] == coll)
+			{
+				pos = coll.gameObject.transform.localToWorldMatrix*(new Vector3(0, -1.2f));
+			}
+			else
+			{
+				pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0, 1.2f));
+			}
+
+			gameObject.transform.position += pos;
+		}
 	}
-
-
 
 	// Update is called once per frame
 	void Update ()

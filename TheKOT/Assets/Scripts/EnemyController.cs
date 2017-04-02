@@ -23,6 +23,8 @@ public class EnemyController : Controller
 				direction = new Vector3(xDirection, yDirection);
 				direction.Normalize();
 
+				gameObject2.GetComponent<AudioSource>().Play();
+
 				delay = Random.Range(1.0f, 3.0f);
 				Move();
 			}
@@ -30,6 +32,8 @@ public class EnemyController : Controller
 			{
 				Speed = 0;
 				delay = Random.Range(1.0f, 3.0f);
+
+				gameObject2.GetComponent<AudioSource>().Stop();
 			}
 		}
 		else
