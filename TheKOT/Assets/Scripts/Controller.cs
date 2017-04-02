@@ -1,15 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class Controller
+namespace Assets.Scripts
 {
-  public float Speed;
-  public GameObject gameObject2;
+	public abstract class Controller
+	{
+		public float Speed;
+		public GameObject GameObject2;
 
-  public int xDirection, yDirection;
-  public Vector3 direction;
+		public int XDirection, YDirection;
+		public Vector3 Direction;
 
-  public abstract void Control(GameObject gameObject);
-  internal abstract void Move();
+		//Manage control of player
+		public abstract void Control(GameObject gameObject);
+
+		//Performing a step in the selected direction
+		internal abstract void Move();
+	}
 }

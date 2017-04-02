@@ -1,33 +1,33 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class UpdateEveryFrame : MonoBehaviour
+namespace Assets
 {
-	private bool isEndOfGame;
-
-	// Use this for initialization
-	void Start ()
+	public class UpdateEveryFrame : MonoBehaviour
 	{
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-		var q = gameObject.transform.rotation;
-		q.eulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, 0.0f);
-		gameObject.transform.rotation = q;
+		private bool isEndOfGame;
 
-		if (Math.Abs(Time.timeScale) < 1)
+		// Use this for initialization
+		void Start ()
 		{
+		
+		}
+	
+		// Update is called once per frame
+		void Update ()
+		{
+			var q = gameObject.transform.rotation;
+			q.eulerAngles = new Vector3(q.eulerAngles.x, q.eulerAngles.y, 0.0f);
+			gameObject.transform.rotation = q;
 
-			var allAudioSource = GameObject.FindObjectsOfType<AudioSource>();
-
-			foreach (var audioSource in allAudioSource)
+			if (Math.Abs(Time.timeScale) < 1)  //If end of game then stop all AudioSources
 			{
-				audioSource.Stop();
+				var allAudioSource = GameObject.FindObjectsOfType<AudioSource>();
+
+				foreach (var audioSource in allAudioSource)
+				{
+					audioSource.Stop();
+				}
 			}
 		}
 	}
