@@ -11,6 +11,7 @@ namespace Assets
 		private float Angle;
 		private float Speed;
 
+
 		private const float pi2 = 1.570796F;
 
 		public PlayerController()
@@ -74,9 +75,12 @@ namespace Assets
 			gameObject.transform.position += new Vector3((float) (Math.Cos(Angle)*Speed) * Time.deltaTime, (float) (Math.Sin(Angle)*Speed) * Time.deltaTime, 0.0f);
 		}
 
-		internal override void Rotate(GameObject gameObject)
+		private void Rotate(GameObject gameObject)
 		{
 			gameObject.transform.rotation = Quaternion.AngleAxis((float) (((Angle - pi2) / Math.PI * 180)), Vector3.forward); 
 		}
+
+
+
 	}
 }

@@ -22,16 +22,34 @@ public class roomLight : MonoBehaviour {
     if ( PlayerIsHere == OldPlayerIsHere )
       return;
     OldPlayerIsHere = PlayerIsHere;
+    var enemies = GameObject.FindGameObjectsWithTag("FriendlyEnemy");
     if ( !PlayerIsHere ) {
-      Debug.Log("PlayerIsHere");
+      Debug.Log("!PlayerIsHere");
       foreach ( var sr in gameObject.GetComponentsInChildren<SpriteRenderer>() ) {
         if ( sr.gameObject.tag == "Floor" )
           sr.color = new Color(0.35f, 0.35f, 0.35f, 1.0f);
       }
-    } else
+      foreach ( var enemy in enemies ) {
+        if ( isInRoom(enemy) ) {
+          enemy.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        }
+      }
+
+    } else {
       foreach ( var sr in gameObject.GetComponentsInChildren<SpriteRenderer>() ) {
         if ( sr.gameObject.tag == "Floor" )
           sr.color = Color.white;
       }
+      foreach ( var enemy in enemies ) {
+        if ( isInRoom(enemy) ) {
+          enemy.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        }
+      }
+    }
+  }
+
+  bool isInRoom(GameObject enemy) {
+    var bc = gameObject.GetComponent<BoxCollider2D>();
+    return bc.OverlapPoint(enemy.transform.position);
   }
 }
