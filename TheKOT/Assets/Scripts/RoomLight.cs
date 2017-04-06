@@ -49,6 +49,14 @@ public class RoomLight : MonoBehaviour
                 enemy.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             }
         }
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Interier"))
+        {
+            if (isInRoom(enemy))
+            {
+                enemy.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            }
+        }
+
         isLight = true;
     }
 
@@ -73,6 +81,15 @@ public class RoomLight : MonoBehaviour
                 enemy.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
             }
         }
+
+        foreach (var enemy in GameObject.FindGameObjectsWithTag("Interier"))
+        {
+            if (isInRoom(enemy))
+            {
+                enemy.GetComponent<SpriteRenderer>().color = new Color(0.35f, 0.35f, 0.35f, 1);
+            }
+        }
+
         isLight = false;
     }
 

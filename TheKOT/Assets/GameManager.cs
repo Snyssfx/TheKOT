@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     void Start() {
         //DontDestroyOnLoad(this);
         StartCoroutine(showComix());
+        gameObject.transform.parent = gameObject.transform.parent.parent;
     }
 
     IEnumerator showComix() {
@@ -25,7 +26,8 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        GameObject.FindGameObjectWithTag("MainCamera").transform.rotation = new Quaternion(0, 0, 0, 0);
+        gameObject.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position - new Vector3(0, 0, 1);
+        //GameObject.FindGameObjectWithTag("MainCamera").transform.rotation = new Quaternion(0, 0, 0, 0);
         if (Input.GetKey(KeyCode.R)) {
             
             Application.LoadLevel("FirstLevel 1");
