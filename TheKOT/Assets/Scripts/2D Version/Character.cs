@@ -14,6 +14,7 @@ namespace Assets.Scripts._2D_Version
 
 		public Type type;
 		public float threshold = 0.4f;
+		private bool canWalk = true;
 
 		private SpriteRenderer renderer;
 		private Rigidbody2D rb;
@@ -83,7 +84,7 @@ namespace Assets.Scripts._2D_Version
 		// Update is called once per frame
 		void Update ()
 		{
-			controller.Control(gameObject, threshold);
+			if (canWalk) controller.Control(gameObject, threshold);
 		}
 
 		public void GameOver(bool isWon)
@@ -109,5 +110,9 @@ namespace Assets.Scripts._2D_Version
 			Time.timeScale = 0;
 		}
 
+		public void ChangePermissionToWalk()
+		{
+			canWalk = !canWalk;
+		}
 	}
 }

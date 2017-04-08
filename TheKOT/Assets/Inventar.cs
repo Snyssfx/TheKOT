@@ -35,6 +35,8 @@ namespace Assets
 					coll.gameObject.GetComponent<Animator>().SetBool("isLaugth", true);
 					gameObject.GetComponent<Animator>().SetBool("isCloud", true);
 
+					gameObject.GetComponent<Character>().ChangePermissionToWalk();
+
 					StartCoroutine(stopAnim());
 					isWinner = true;
 					numOfFeathers--;
@@ -48,6 +50,7 @@ namespace Assets
 		IEnumerator stopAnim() {
 			yield return new WaitForSeconds(1.0f);
 			gameObject.GetComponent<Animator>().SetBool("isCloud", false);
+			gameObject.GetComponent<Character>().ChangePermissionToWalk();
 			yield return null;
 		}
 	}

@@ -32,7 +32,7 @@ namespace Assets
 			if (Input.GetKey(KeyCode.R)) {
             
 				Application.LoadLevel("FirstLevel 1");
-
+				Time.timeScale = 1;
 			}
 		}
 	}
