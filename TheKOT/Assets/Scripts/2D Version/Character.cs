@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts._2D_Version
@@ -59,16 +60,11 @@ namespace Assets.Scripts._2D_Version
 		{
 			//DOOR
 			bool keyPressed = Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.F);
-			if ( type == Type.Player && coll.gameObject.tag == "Door" &&  keyPressed) {
-				Vector3 pos = gameObject.transform.position;
-				var colls = coll.gameObject.GetComponents<BoxCollider2D>();
+			if ( type == Type.Player && coll.gameObject.tag == "Door" &&  keyPressed)
+			{
+				var posDoor = coll.gameObject.transform.position;
 
-				if ( colls[0] == coll )
-					pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0.0f, -2.0f));
-				else
-					pos = coll.gameObject.transform.localToWorldMatrix * (new Vector3(0.0f, 2.0f));
-
-				gameObject.transform.position += pos;
+				gameObject.transform.position = new Vector3(posDoor.x + coll.offset.y * Math.Sign(coll.transform.rotation.z), posDoor.y + coll.offset.x * Math.Sign(coll.transform.rotation.z)); ;
 			}
 
 			//ENEMY GIRL
